@@ -7,7 +7,9 @@ class Loggin():
         self.ventana = tk.Tk()
         self.ventana.resizable(0, 0)
         self.ventana.config(width=500, height=450)
+        self.ventana.config(bg="#F0F0F0")
         self.ventana.title("Inicio de sesion")
+
 
         #Iconos
         self.IconoLoggin = tk.PhotoImage(file=r"Juego/Src/imagenLoggin-2.png")
