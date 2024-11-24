@@ -2,7 +2,7 @@
 import tkinter
 from tkinter import messagebox
 
-class Jugador():
+class Usuario():
 
     def __init__(self):
         pass
