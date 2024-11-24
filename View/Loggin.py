@@ -35,6 +35,15 @@ class Loggin():
         else:
             self.btnIngresar.config(state="disabled")
 
+    def verCaracteres(self, event):
+        if(self.bandera == True):
+            self.txtPassword.config(show='*')
+            self.btnVer.config(image=self.IconoVer)
+            self.bandera = False
+        else:
+            self.txtPassword.config(show='')
+            self.btnVer.config(image=self.IconoOcul)
+            self.bandera = True
 
     def __init__(self):
         self.ventana = tk.Tk()
@@ -49,6 +58,8 @@ class Loggin():
         self.caracteresPassword = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
         #Iconos
+        self.IconoOcul = tk.PhotoImage(file=r"Juego/Src/Ocultar.png")
+        self.IconoVer = tk.PhotoImage(file=r"Juego/Src/Ver.png")
         self.IconoLoggin = tk.PhotoImage(file=r"Juego/Src/imagenLoggin-2.png")
 
         #Frame que agrupa el contenido
@@ -77,6 +88,11 @@ class Loggin():
         self.txtPassword.bind("<KeyRelease>", self.validarCampos)
 
         #Botones
+        self.btnVer = tk.Button(self.frame, image=self.IconoVer, width=25, height=20, bg="#F0F0F0")
+        self.btnVer.place(x=320, y=190)
+        self.btnVer.bind("<Enter>", self.verCaracteres)
+        self.btnVer.bind("<Leave>", self.verCaracteres)
+
         self.btnIngresar = tk.Button(self.frame, text="Ingresar", width=8)
         self.btnIngresar.place(x=80, y=240)
 
