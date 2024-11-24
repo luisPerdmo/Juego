@@ -3,12 +3,50 @@ from tkinter import *
 from tkinter import messagebox
 
 class Loggin():
+
+    #Mostrar y eliminar Texto
+    def mostrarUsu(self, event):
+        if self.txtUsuario.get() == "":
+            self.txtUsuario.insert(0, "Usuario:")
+            self.txtUsuario.config(fg="gray")
+    def eliminarUsu(self, event):
+        if self.txtUsuario.get() == "Usuario:":
+            self.txtUsuario.delete(0, END)
+            self.txtUsuario.config(fg="black")
+    def mostrarPass(self, event):
+        if self.txtPassword.get() == "":
+            self.txtPassword.insert(0, "Contraseńa:")
+            self.txtPassword.config(fg="gray")
+    def eliminarPass(self, event):
+        if self.txtPassword.get() == "Contraseńa:":
+            self.txtPassword.delete(0, END)
+            self.txtPassword.config(fg="black")
+
+    def validarCampos(self, event):
+        if len(self.txtUsuario.get()) > 15:
+            self.txtUsuario.delete(len(self.txtUsuario.get()) - 1, END)
+        if len(self.txtPassword.get()) > 15:
+            self.txtPassword.delete(len(self.txtPassword.get()) - 1, END)
+        if len(self.txtUsuario.get()) >= 3 and len(self.txtPassword.get()) >= 3:
+            if len(self.txtUsuario.get()) <= 15 and len(self.txtPassword.get()) <= 15:
+                self.btnIngresar.config(state="normal")
+            else:
+                self.btnIngresar.config(state="disabled")
+        else:
+            self.btnIngresar.config(state="disabled")
+
+
     def __init__(self):
         self.ventana = tk.Tk()
         self.ventana.resizable(0, 0)
         self.ventana.config(width=500, height=450)
         self.ventana.config(bg="#FFFFFF")
         self.ventana.title("Inicio de sesion")
+
+        #Variables
+        self.bandera = False
+        self.caracteresUsuario = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.']
+        self.caracteresPassword = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
         #Iconos
         self.IconoLoggin = tk.PhotoImage(file=r"Juego/Src/imagenLoggin-2.png")
@@ -26,9 +64,17 @@ class Loggin():
         #Campo de entrada
         self.txtUsuario = tk.Entry(self.frame, width=25)
         self.txtUsuario.place(x=80, y=140)
+        self.txtUsuario.insert(0, "Usuario:")
+        self.txtUsuario.bind("<FocusOut>", self.mostrarUsu)
+        self.txtUsuario.bind("<FocusIn>", self.eliminarUsu)
+        self.txtUsuario.bind("<KeyRelease>", self.validarCampos)
 
         self.txtPassword = tk.Entry(self.frame, width=25)
         self.txtPassword.place(x=80, y=190)
+        self.txtPassword.insert(0, "Contraseńa:")
+        self.txtPassword.bind("<FocusOut>", self.mostrarPass)
+        self.txtPassword.bind("<FocusIn>", self.eliminarPass)
+        self.txtPassword.bind("<KeyRelease>", self.validarCampos)
 
         #Botones
         self.btnIngresar = tk.Button(self.frame, text="Ingresar", width=8)
