@@ -36,7 +36,7 @@ class Loggin():
             self.btnIngresar.config(state="disabled")
 
     def verCaracteres(self, event):
-        if(self.bandera == True):
+        if self.txtPassword.get() != "" and self.txtPassword.get() != "Contraseńa:":
             self.txtPassword.config(show='*')
             self.btnVer.config(image=self.IconoVer)
             self.bandera = False
