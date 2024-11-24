@@ -4,15 +4,22 @@ from tkinter import messagebox
 
 class CrearUsuario():
 
+    def guardarUsuario(self, event):
+        self.Usuario.crearUsuario(self.txtNombre.get(), self.txtContrasena.get())
+        messagebox.showinfo("Confirmación", "¡Nuevo usuario registrado con éxito!")
+
+
     def limpiarCampos(self):
         self.txtNombre.delete(0, END)
         self.txtContrasena.delete(0, END)
 
-    def __init__(self):
+    def __init__(self, Usuario):
         self.ventana = tk.Toplevel()
         self.ventana.resizable(0, 0)
         self.ventana.title("Crear Nuevo Usuario")
         self.ventana.config(width=360, height=385)
+
+        self.Usuario = Usuario
 
         self.lbltitulo = tk.Label(self.ventana, text="Crear Usuario", font=("Arial", 14, "bold"))
         self.lbltitulo.place(relx=0.5, y=40, anchor="center")
@@ -31,6 +38,7 @@ class CrearUsuario():
 
         self.btnGuardar = tk.Button(self.ventana, text="Guardar")
         self.btnGuardar.place(x=85, y=260, width=80, height=30)
+        self.btnGuardar.bind("<Button-1>", self.guardarUsuario)
 
         self.btnLimpiar = tk.Button(self.ventana, text="Limpiar")
         self.btnLimpiar.place(x=195, y=260, width=80, height=30)
