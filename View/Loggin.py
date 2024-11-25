@@ -36,7 +36,7 @@ class Loggin():
             self.btnIngresar.config(state="disabled")
 
     def verCaracteres(self, event):
-        if self.txtPassword.get() != "" and self.txtPassword.get() != "Contraseńa:":
+        if(self.bandera == True):
             self.txtPassword.config(show='*')
             self.btnVer.config(image=self.IconoVer)
             self.bandera = False
@@ -44,6 +44,15 @@ class Loggin():
             self.txtPassword.config(show='')
             self.btnVer.config(image=self.IconoOcul)
             self.bandera = True
+
+    def limpiarCampos(self):
+        self.txtUsuario.delete(0, END)
+        self.txtPassword.delete(0, END)
+        self.txtUsuario.insert(0, "Usuario:")
+        self.txtPassword.insert(0, "Contraseña:")
+        self.txtUsuario.config(fg="gray")
+        self.txtPassword.config(fg="gray")
+        self.validarCampos()
 
     def __init__(self):
         self.ventana = tk.Tk()
@@ -88,7 +97,7 @@ class Loggin():
         self.txtPassword.bind("<KeyRelease>", self.validarCampos)
 
         #Botones
-        self.btnVer = tk.Button(self.frame, image=self.IconoVer, width=25, height=20, bg="#F0F0F0")
+        self.btnVer = tk.Button(self.frame, image=self.IconoVer, width=25, height=20, bg="#FFFFFF")
         self.btnVer.place(x=320, y=190)
         self.btnVer.bind("<Enter>", self.verCaracteres)
         self.btnVer.bind("<Leave>", self.verCaracteres)
@@ -96,7 +105,7 @@ class Loggin():
         self.btnIngresar = tk.Button(self.frame, text="Ingresar", width=8)
         self.btnIngresar.place(x=80, y=240)
 
-        self.btnLimpiar = tk.Button(self.frame, text="Limpiar", width=8)
+        self.btnLimpiar = tk.Button(self.frame, text="Limpiar", width=8, command=self.limpiarCampos)
         self.btnLimpiar.place(x=208, y=240)
 
         self.btnCrearCuenta = tk.Button(self.frame, text="Crear Cuenta", width=22)
