@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
+from Controller.Usuario import Usuario
+from View.crearUsuario import CrearUsuario  
 
 class Loggin():
 
@@ -52,6 +54,13 @@ class Loggin():
         self.txtPassword.insert(0, "Contraseña:")
         self.txtUsuario.config(fg="gray")
         self.txtPassword.config(fg="gray")
+
+    def ingresar(self, event):
+        miUsuario = Usuario()
+        miUsuario.iniciarSesion(self.txtUsuario.get(), self.txtPassword.get(), self.ventana)
+    
+    def abrirVentanaCrearUsuario(self):
+        CrearUsuario(Usuario())
 
     def __init__(self):
         self.ventana = tk.Tk()
@@ -107,7 +116,7 @@ class Loggin():
         self.btnLimpiar = tk.Button(self.frame, text="Limpiar", width=8, command=self.limpiarCampos)
         self.btnLimpiar.place(x=208, y=240)
 
-        self.btnCrearCuenta = tk.Button(self.frame, text="Crear Cuenta", width=22)
+        self.btnCrearCuenta = tk.Button(self.frame, text="Crear Cuenta", width=22, command=self.abrirVentanaCrearUsuario)
         self.btnCrearCuenta.place(x=80, y=280)
 
         self.ventana.mainloop()

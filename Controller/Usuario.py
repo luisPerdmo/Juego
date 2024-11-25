@@ -22,3 +22,11 @@ class Usuario():
                 miConexion.cerrarConexion()
                 return
         messagebox.showerror("Advertencia", "El nombre de usuario y/o contraseña no existe, verifique e intente nuevamente!")
+
+    def crearUsuario(self, nombreUsu, passwordUsu):
+        miConexion = ConexionDB()
+        miConexion.crearConexion()
+        conexion = miConexion.getConection()
+        cursor = conexion.cursor()
+        cursor.execute("INSERT INTO usuario (nombre, contrasena) VALUES (?, ?)", (nombreUsu, passwordUsu))
+        miConexion.cerrarConexion
