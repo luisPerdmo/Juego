@@ -4,7 +4,7 @@ from tkinter import messagebox
 
 class CrearUsuario():
 
-    def validarCampos(self, event=None):
+    def validarCampos(self, event):
     
         nombre_valido = len(self.txtNombre.get()) >= 3
         contrasena_valida = len(self.txtContrasena.get()) >= 6  
