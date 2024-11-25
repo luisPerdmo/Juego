@@ -11,7 +11,7 @@ class Usuario():
         miConexion.crearConexion()
         conexion = miConexion.getConection()
         cursor = conexion.cursor()
-        cursor.execute("Select * from usuario")
+        cursor.execute("Select * from jugadores")
         listaUsuario = cursor.fetchall()
         for usuario in listaUsuario:
             if(usuario[1] == nombreUsuario and usuario[2] == password):
@@ -28,5 +28,5 @@ class Usuario():
         miConexion.crearConexion()
         conexion = miConexion.getConection()
         cursor = conexion.cursor()
-        cursor.execute("INSERT INTO usuario (nombre, contrasena) VALUES (?, ?)", (nombreUsu, passwordUsu))
+        cursor.execute("INSERT INTO jugadores (nombre, contrasena) VALUES (?, ?)", (nombreUsu, passwordUsu))
         miConexion.cerrarConexion
