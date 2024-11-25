@@ -52,7 +52,6 @@ class Loggin():
         self.txtPassword.insert(0, "Contraseña:")
         self.txtUsuario.config(fg="gray")
         self.txtPassword.config(fg="gray")
-        self.validarCampos()
 
     def __init__(self):
         self.ventana = tk.Tk()
