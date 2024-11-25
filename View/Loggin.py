@@ -47,7 +47,7 @@ class Loggin():
             self.btnVer.config(image=self.IconoOcul)
             self.bandera = True
 
-    def limpiarCampos(self):
+    def limpiarCampos(self, event):
         self.txtUsuario.delete(0, END)
         self.txtPassword.delete(0, END)
         self.txtUsuario.insert(0, "Usuario:")
@@ -59,7 +59,7 @@ class Loggin():
         miUsuario = Usuario()
         miUsuario.iniciarSesion(self.txtUsuario.get(), self.txtPassword.get(), self.ventana)
     
-    def abrirVentanaCrearUsuario(self):
+    def abrirVentanaCrearUsuario(self, event):
         CrearUsuario(Usuario())
 
     def __init__(self):
@@ -112,11 +112,14 @@ class Loggin():
 
         self.btnIngresar = tk.Button(self.frame, text="Ingresar", width=8)
         self.btnIngresar.place(x=80, y=240)
+        self.btnIngresar.bind("<Button-1>", self.ingresar)
 
-        self.btnLimpiar = tk.Button(self.frame, text="Limpiar", width=8, command=self.limpiarCampos)
+        self.btnLimpiar = tk.Button(self.frame, text="Limpiar", width=8)
         self.btnLimpiar.place(x=208, y=240)
+        self.btnLimpiar.bind("<Button-1>", self.limpiarCampos)
 
-        self.btnCrearCuenta = tk.Button(self.frame, text="Crear Cuenta", width=22, command=self.abrirVentanaCrearUsuario)
+        self.btnCrearCuenta = tk.Button(self.frame, text="Crear Cuenta", width=22)
         self.btnCrearCuenta.place(x=80, y=280)
+        self.btnCrearCuenta.bind("<Button-1>", self.abrirVentanaCrearUsuario)
 
         self.ventana.mainloop()
