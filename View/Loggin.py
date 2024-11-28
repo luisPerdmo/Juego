@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from Controller.Usuario import Usuario
 from View.crearUsuario import CrearUsuario  
+from View.VistaJuego import VistaJuego
 
 class Loggin():
 
@@ -39,6 +40,9 @@ class Loggin():
     
     def abrirVentanaCrearUsuario(self):
         CrearUsuario(Usuario())
+
+    def vistaJuego(self, Jugador):
+        VistaJuego(self.ventana, Jugador)
 
     def __init__(self):
         self.ventana = tk.Tk()
@@ -92,10 +96,12 @@ class Loggin():
         self.btnIngresar = tk.Button(self.frame, text="Ingresar", width=8)
         self.btnIngresar.place(x=80, y=240)
 
-        self.btnLimpiar = tk.Button(self.frame, text="Limpiar", width=8, command=self.limpiarCampos)
+        self.btnLimpiar = tk.Button(self.frame, text="Limpiar", width=8)
         self.btnLimpiar.place(x=208, y=240)
+        self.btnLimpiar.bind("<Button-1>" , self.limpiarCampos)
 
-        self.btnCrearCuenta = tk.Button(self.frame, text="Crear Cuenta", width=22, command=self.abrirVentanaCrearUsuario)
+        self.btnCrearCuenta = tk.Button(self.frame, text="Crear Cuenta", width=22)
         self.btnCrearCuenta.place(x=80, y=280)
+        self.btnCrearCuenta.bind("<Button-1>" , self.abrirVentanaCrearUsuario)
 
         self.ventana.mainloop()
