@@ -5,6 +5,7 @@ from tkinter import messagebox
 class CrearUsuario():
 
     def validarCampos(self, event):
+        
         nombre_valido = len(self.txtNombre.get()) >= 3
         contrasena_valida = len(self.txtContrasena.get()) >= 6  
 
@@ -14,7 +15,14 @@ class CrearUsuario():
             self.btnGuardar.config(state=tk.DISABLED)
 
     def guardarUsuario(self, event):
-        self.Usuario.crearUsuario(self.txtNombre.get(), self.txtContrasena.get())
+        nombre = self.txtNombre.get()
+        contrasena = self.txtContrasena.get()
+
+        if self.Usuario.existeUsuario(nombre):
+            messagebox.showerror("Error", "El nombre de usuario ya existe. Por favor, elige otro.")
+            return
+
+        self.Usuario.crearUsuario(nombre, contrasena)
         messagebox.showinfo("Confirmación", "¡Nuevo usuario registrado con éxito!")
         self.limpiarCampos()
 

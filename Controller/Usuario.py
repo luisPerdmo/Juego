@@ -31,3 +31,14 @@ class Usuario():
         cursor.execute("INSERT INTO jugadores (nombre, contrasena) VALUES (?, ?)", (nombreUsu, passwordUsu))
         conexion.commit()
         miConexion.cerrarConexion
+
+
+    def existeUsuario(self, nombreUsu):
+        miConexion = ConexionDB()
+        miConexion.crearConexion()
+        conexion = miConexion.getConection()
+        cursor = conexion.cursor()
+        cursor.execute("SELECT * FROM usuarios WHERE nombre = ?", (nombreUsu,))
+        conexion.commit()
+        miConexion.cerrarConexion
+        
