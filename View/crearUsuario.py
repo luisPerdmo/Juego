@@ -13,12 +13,12 @@ class CrearUsuario():
             self.btnGuardar.config(state=tk.DISABLED)
 
     def guardarUsuario(self, event):
-        nombre = self.txtNombre.get()
-        contrasena = self.txtContrasena.get()
-        if not nombre or not contrasena:  # Verificar si los campos están vacíos
+        nombre = self.txtNombre.get().strip()  
+        contrasena = self.txtContrasena.get().strip()
+        if not nombre or not contrasena:  
             messagebox.showerror("Error", "Por favor, ingrese un nombre y una contraseña válidos.")
             return
-        if self.Usuario.existeUsuario(nombre):
+        if self.Usuario.existeUsuario(nombre):  # Verificamos si el usuario ya existe
             messagebox.showerror("Error", "El nombre de usuario ya existe. Por favor, elige otro.")
             return
         self.Usuario.crearUsuario(nombre, contrasena)
