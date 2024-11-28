@@ -28,7 +28,7 @@ class Loggin():
             self.btnVer.config(image=self.IconoVer)
             self.bandera = True
 
-    def limpiarCampos(self):
+    def limpiarCampos(self, event):
         self.txtUsuario.delete(0, END)
         self.txtPassword.delete(0, END)
         self.txtUsuario.delete(0, END)
@@ -38,7 +38,7 @@ class Loggin():
         miUsuario = Usuario()
         miUsuario.iniciarSesion(self.txtUsuario.get(), self.txtPassword.get(), self.ventana)
     
-    def abrirVentanaCrearUsuario(self):
+    def abrirVentanaCrearUsuario(self, event):
         CrearUsuario(Usuario())
 
     def vistaJuego(self, Usuario):
