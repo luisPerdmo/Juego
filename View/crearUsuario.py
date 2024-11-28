@@ -5,10 +5,9 @@ from tkinter import messagebox
 class CrearUsuario():
 
     def validarCampos(self, event):
-        
-        nombre_valido = len(self.txtNombre.get()) >= 3
-        contrasena_valida = len(self.txtContrasena.get()) >= 6  
-        if nombre_valido and contrasena_valida:
+        nombreValido = len(self.txtNombre.get()) >= 3
+        contrasenaValida = len(self.txtContrasena.get()) >= 6  
+        if nombreValido and contrasenaValida:
             self.btnGuardar.config(state=tk.NORMAL)
         else:
             self.btnGuardar.config(state=tk.DISABLED)
