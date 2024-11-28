@@ -41,8 +41,8 @@ class Loggin():
     def abrirVentanaCrearUsuario(self):
         CrearUsuario(Usuario())
 
-    def vistaJuego(self, Jugador):
-        VistaJuego(self.ventana, Jugador)
+    def vistaJuego(self, Usuario):
+        VistaJuego(self.ventana, Usuario)
 
     def __init__(self):
         self.ventana = tk.Tk()
