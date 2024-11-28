@@ -95,6 +95,7 @@ class Loggin():
 
         self.btnIngresar = tk.Button(self.frame, text="Ingresar", width=8)
         self.btnIngresar.place(x=80, y=240)
+        self.btnIngresar.bind("<Button-1>", self.ingresar)
 
         self.btnLimpiar = tk.Button(self.frame, text="Limpiar", width=8)
         self.btnLimpiar.place(x=208, y=240)
