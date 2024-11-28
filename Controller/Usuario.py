@@ -40,7 +40,7 @@ class Usuario():
         miConexion.crearConexion()
         conexion = miConexion.getConection()
         cursor = conexion.cursor()
-        cursor.execute("SELECT * FROM jugadores WHERE nombre = %s", (nombreUsu,))
+        cursor.execute("SELECT * FROM jugadores WHERE nombre = ?", (nombreUsu,))
         conexion.commit()
         resultado = cursor.fetchone()
         miConexion.cerrarConexion
