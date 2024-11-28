@@ -35,14 +35,15 @@ class Loggin():
         self.txtPassword.delete(0, END)
       
     def ingresar(self, event):
-        miUsuario = Usuario()
-        miUsuario.iniciarSesion(self.txtUsuario.get(), self.txtPassword.get(), self.ventana)
+        self.miUsuario = Usuario()
+        self.miUsuario.iniciarSesion(self.txtUsuario.get(), self.txtPassword.get(), self.ventana)
+        self.vistaJuego(event)
     
     def abrirVentanaCrearUsuario(self, event):
         CrearUsuario(Usuario())
 
     def vistaJuego(self, event):
-        VistaJuego(self.ventana, Usuario)
+        VistaJuego(self.ventana, self.miUsuario)
 
     def __init__(self):
         self.ventana = tk.Tk()
