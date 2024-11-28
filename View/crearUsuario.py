@@ -7,7 +7,6 @@ class CrearUsuario():
     def validarCampos(self, event):
         nombre_valido = len(self.txtNombre.get()) >= 3
         contrasena_valida = len(self.txtContrasena.get()) >= 6  
-
         if nombre_valido and contrasena_valida:
             self.btnGuardar.config(state=tk.NORMAL)
         else:
@@ -25,35 +24,43 @@ class CrearUsuario():
 
     def __init__(self, Usuario):
         self.ventana = tk.Toplevel()
-        self.ventana.resizable(0, 0)
         self.ventana.title("Crear Nuevo Usuario")
+        self.ventana.config(bg="#FFFFFF")
         self.ventana.config(width=360, height=385)
+        self.ventana.resizable(0, 0)
 
         self.Usuario = Usuario
 
-        self.lbltitulo = tk.Label(self.ventana, text="Crear Usuario", font=("Arial", 14, "bold"))
+        #Frame que agrupa el contenido
+        self.frame = tk.Frame(self.ventana, width=300, height=325, bg="#F0F0F0")
+        self.frame.place(relx=0.5, rely=0.5, anchor="center")
+
+        #Textos
+        self.lbltitulo = tk.Label(self.frame, text="Crear Usuario", font=("Comic Sans MS", 28, "bold"), bg="#F0F0F0")
         self.lbltitulo.place(relx=0.5, y=40, anchor="center")
 
-        self.lblNombre = tk.Label(self.ventana, text="Nombre*:", anchor="w")
-        self.lblNombre.place(x=50, y=100, width=80, height=25)
+        self.lblNombre = tk.Label(self.frame, text="Nombre*:", anchor="w", bg="#F0F0F0")
+        self.lblNombre.place(x=54, y=100)
 
-        self.txtNombre = tk.Entry(self.ventana)
-        self.txtNombre.place(x=150, y=100, width=160, height=25)
+        self.lblContrasena = tk.Label(self.frame, text="Password*:", anchor="w", bg="#F0F0F0")
+        self.lblContrasena.place(x=54, y=150)
+        
+        #Campo de Entrada
+        self.txtNombre = tk.Entry(self.frame)
+        self.txtNombre.place(x=50, y=120)
         self.txtNombre.bind("<KeyRelease>", self.validarCampos)
 
-        self.lblContrasena = tk.Label(self.ventana, text="Contraseña*:", anchor="w")
-        self.lblContrasena.place(x=50, y=150, width=80, height=25)
-
-        self.txtContrasena = tk.Entry(self.ventana)
-        self.txtContrasena.place(x=150, y=150, width=160, height=25)
+        self.txtContrasena = tk.Entry(self.frame)
+        self.txtContrasena.place(x=50, y=170)
         self.txtContrasena.bind("<KeyRelease>", self.validarCampos)
 
-        self.btnGuardar = tk.Button(self.ventana, text="Guardar", state=tk.DISABLED)
-        self.btnGuardar.place(x=85, y=260, width=80, height=30)
+        #Botones
+        self.btnGuardar = tk.Button(self.frame, text="Guardar", state=tk.DISABLED, bg="#F0F0F0")
+        self.btnGuardar.place(x=50, y=230, width=190)
         self.btnGuardar.bind("<Button-1>", self.guardarUsuario)
 
-        self.btnLimpiar = tk.Button(self.ventana, text="Limpiar")
-        self.btnLimpiar.place(x=195, y=260, width=80, height=30)
+        self.btnLimpiar = tk.Button(self.frame, text="Limpiar", bg="#F0F0F0")
+        self.btnLimpiar.place(x=50, y=265, width=190)
         self.btnLimpiar.bind("<Button-1>", self.limpiarCampos)
 
         self.ventana.mainloop()
