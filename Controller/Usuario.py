@@ -32,3 +32,5 @@ class Usuario():
         cursor.execute("INSERT INTO jugadores (nombre, contrasena) VALUES (?, ?)", (nombreUsu, passwordUsu))
         conexion.commit()
         miConexion.cerrarConexion
+
+    
