@@ -17,12 +17,12 @@ class Usuario():
             if(usuario[1] == nombreUsuario and usuario[2] == password):
                 self.nombre = usuario[1]
                 self.contrasena = usuario[2]
-            else:
-                messagebox.showinfo("informacion", "Acceso Correcto USuario")  
+                messagebox.showinfo("Informacion", "Acceso Correcto Usuario")
                 miConexion.cerrarConexion()
                 return
-        messagebox.showerror("Advertencia", "El nombre de usuario y/o contraseña no existe, verifique e intente nuevamente!")
-
+            messagebox.showerror("Advertencia", "El nombre de usuario y/o contraseña no existe, verifique e intente nuevamente!")
+            miConexion.cerrarConexion()
+            
     def crearUsuario(self, nombreUsu, passwordUsu):
         miConexion = ConexionDB()
         miConexion.crearConexion()

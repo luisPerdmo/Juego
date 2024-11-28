@@ -41,7 +41,7 @@ class Loggin():
     def abrirVentanaCrearUsuario(self, event):
         CrearUsuario(Usuario())
 
-    def vistaJuego(self, Usuario):
+    def vistaJuego(self, event):
         VistaJuego(self.ventana, Usuario)
 
     def __init__(self):
