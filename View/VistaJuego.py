@@ -7,8 +7,8 @@ class VistaJuego:
     def destroy(self, event):
         self.ventana.destroy()
 
-    def __init__(self, ventana, jugador):  
-        self.ventana = tk.Toplevel(ventana)  
+    def __init__(self, loggin, jugador):  
+        self.ventana = tk.Toplevel(loggin)  
         self.ventana.title("Juego Principal")
         self.ventana.geometry("800x600")
         

@@ -1,5 +1,6 @@
 from Model.ConexionDB import ConexionDB
 from tkinter import messagebox
+from View.VistaJuego import VistaJuego
 
 class Usuario():
     def __init__(self):
@@ -18,6 +19,7 @@ class Usuario():
                 self.nombre = usuario[1]
                 self.contrasena = usuario[2]
                 messagebox.showinfo("Informacion", "Acceso Correcto Usuario")
+                mijuego = VistaJuego(loggin, self)
                 miConexion.cerrarConexion()
                 return
             messagebox.showerror("Advertencia", "El nombre de usuario y/o contraseña no existe, verifique e intente nuevamente!")

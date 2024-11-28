@@ -37,13 +37,12 @@ class Loggin():
     def ingresar(self, event):
         self.miUsuario = Usuario()
         self.miUsuario.iniciarSesion(self.txtUsuario.get(), self.txtPassword.get(), self.ventana)
-        self.vistaJuego(event)
     
     def abrirVentanaCrearUsuario(self, event):
         CrearUsuario(Usuario())
 
     def vistaJuego(self, event):
-        VistaJuego(self.ventana, self.miUsuario)
+        juego = VistaJuego(self.ventana, self.miUsuario)
 
     def __init__(self):
         self.ventana = tk.Tk()
