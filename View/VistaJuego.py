@@ -36,7 +36,7 @@ class VistaJuego:
         self.canvas.move(self.tubosB, - self.velocidad, 0)
         if self.canvas.coords(self.tubosB)[0] < -100:
             h = self.ventana.winfo_height()
-            num = random.choice([i for i in range(160, h, 160)])
+            num = random.choice([i for i in range(160, h, - 160, 160)])
             self.canvas.coords(self.tubosB, self.ventana.winfo_width(), num + 160)
             self.canvas.coords(self.tubosA, self.ventana.winfo_width(), num - 900)
         if 145 < self.canvas.coords(self.tubosB)[0] < 155:
@@ -66,8 +66,8 @@ class VistaJuego:
         self.perder = False
 
         #Imagenes
-        self.imagenTuboA = tk.PhotoImage(file=r"Juego/Src/tubo.png")
-        self.imagenTuboB = tk.PhotoImage(file=r"Juego/Src/tubo2.png")
+        self.imagenTubob = tk.PhotoImage(file=r"Juego/Src/tubo.png")
+        self.imagenTuboA = tk.PhotoImage(file=r"Juego/Src/tubo2.png")
         self.imagenCondorV = tk.PhotoImage(file=r"Juego/Src/condorVolando.png")
         self.imagenCondorP = tk.PhotoImage(file=r"Juego/Src/condorPlaniando.png")
         
@@ -82,7 +82,7 @@ class VistaJuego:
         self.condorP = self.canvas.create_image(self.x, self.y, anchor="nw", image=self.imagenCondorP)
         self.puntos = self.canvas.create_text(75, 30, text="0", font=("3D Egoistism outline", 30))
         self.tubosA = self.canvas.create_image(1200, -550, anchor="nw", image=self.imagenTuboA)
-        self.tubosB = self.canvas.create_image(1200, -550, anchor="nw", image=self.imagenTuboB)
+        self.tubosB = self.canvas.create_image(1200, 550, anchor="nw", image=self.imagenTubob)
 
         #botones
         self.btnCerrar = tk.Label(self.ventana, text="Cerrar")
@@ -92,7 +92,7 @@ class VistaJuego:
         #Eventos
         self.ventana.bind("<space>", self.moverCon)
         
-        
+        #After
         self.ventana.after(50, self.moverCondor)
         self.ventana.after(50, self.moverTubo)
 
