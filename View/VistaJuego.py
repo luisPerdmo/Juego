@@ -38,7 +38,7 @@ class VistaJuego:
             h = self.ventana.winfo_height()
             num = random.choice([i for i in range(160, h, 160)])
             self.canvas.coords(self.tubosB, self.ventana.winfo_width(), num + 160)
-            self.canvas.coords(self.tubosA, self.ventana.winfo_width(), num - 900)
+            self.canvas.coords(self.tubosA, self.ventana.winfo_width(), num - 1000)
             self.puntuacion += 1
             self.velocidad += 1 
             self.canvas.itemconfigure(self.puntos, text=f"{self.puntuacion}")
