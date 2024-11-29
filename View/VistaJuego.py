@@ -56,7 +56,7 @@ class VistaJuego:
     def __init__(self, loggin, jugador):  
         self.ventana = tk.Toplevel(loggin)  
         self.ventana.title("Juego Principal")
-        self.ventana.config(width=1000, height=600)
+        self.ventana.config(width=1020, height=660)
         self.ventana.resizable(0,0)
 
         self.x = 80
@@ -76,7 +76,7 @@ class VistaJuego:
         self.lblJugador.place(x=30, y=1)  
 
         #canvas
-        self.canvas = tk.Canvas(self.ventana, width=980, height=545, bg="#63BFFF")
+        self.canvas = tk.Canvas(self.ventana, width=1000, height=600, bg="#63BFFF")
         self.canvas.place(relx=0.5, rely=0.5, anchor="center")  
 
         self.condorP = self.canvas.create_image(self.x, self.y, anchor="nw", image=self.imagenCondorP)
@@ -86,7 +86,7 @@ class VistaJuego:
 
         #botones
         self.btnCerrar = tk.Label(self.ventana, text="Cerrar")
-        self.btnCerrar.place(x=940, y=573)  
+        self.btnCerrar.place(x=940, y=634)  
         self.btnCerrar.bind("<Button-1>",self.destroy)
 
         #Eventos
