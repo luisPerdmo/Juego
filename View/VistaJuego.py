@@ -39,14 +39,10 @@ class VistaJuego:
             num = random.choice([i for i in range(160, h, 160)])
             self.canvas.coords(self.tubosB, self.ventana.winfo_width(), num + 160)
             self.canvas.coords(self.tubosA, self.ventana.winfo_width(), num - 900)
-        if self.canvas.coords(self.tubosB)[0] < self.x and not hasattr(self, "pasado"):
             self.puntuacion += 1
             self.velocidad += 1 
-            self.canvas.itemconfigure(self.puntos, text=str(self.puntuacion))
-            setattr(self, "pasado", True) 
-        if self.canvas.coords(self.tubosB)[0] >= self.x:
-            if hasattr(self, "pasado"):
-                 delattr(self, "pasado")
+            self.canvas.itemconfigure(self.puntos, text=f"{self.puntuacion}")
+
         if self.canvas.coords(self.tubosB):
             if self.canvas.bbox(self.condorP)[0] < self.canvas.bbox(self.tubosB)[2] and self.canvas.bbox(self.condorP)[2] > self.canvas.bbox(self.tubosB)[0]:
                 if self.canvas.bbox(self.condorP)[1] < self.canvas.bbox(self.tubosA)[3] or self.canvas.bbox(self.condorP)[3] > self.canvas.bbox(self.tubosB)[1]:
