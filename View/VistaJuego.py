@@ -36,7 +36,7 @@ class VistaJuego:
         self.canvas.move(self.tubosB, - self.velocidad, 0)
         if self.canvas.coords(self.tubosB)[0] < -100:
             h = self.ventana.winfo_height()
-            num = random.choice([i for i in range(160, h, - 160, 160)])
+            num = random.choice([i for i in range(160, h, 160)])
             self.canvas.coords(self.tubosB, self.ventana.winfo_width(), num + 160)
             self.canvas.coords(self.tubosA, self.ventana.winfo_width(), num - 900)
         if 145 < self.canvas.coords(self.tubosB)[0] < 155:
@@ -44,8 +44,11 @@ class VistaJuego:
             self.velocidad += 1 
             self.canvas.itemconfigure(self.puntos, text=str(self.puntuacion))
         if self.canvas.coords(self.tubosB):
-            if self.canvas.bbox(self.condorP)[0] < self.canvas.bbox(self.tubosB)[2] and self.canvas.bbox(self.condorP)[2] > self.canvas.bbox(self.tubosB)[0]:
-                if self.canvas.bbox(self.condorP)[1] < self.canvas.bbox(self.tubosA)[3] or self.canvas.bbox(self.condorP)[3] > self.ventana.bbox(self.tubosB)[1]:
+            condorbbox = self.canvas.bbox(self.condorP)
+            tuboAbbox = self.canvas.bbox(self.tubosA)
+            tuboBbbox = self.canvas.bbox(self.tubosB)
+            if condorbbox[2] > tuboAbbox[0] and condorbbox[0] < tuboAbbox[2]:  # Superposición horizontal
+                if condorbbox[1] < tuboAbbox[3] or condorbbox[3] > tuboBbbox[1]:  # Superposición vertical
                     self.teerminarJuego()
         if not self.perder:
             self.ventana.after(50, self.moverTubo)
