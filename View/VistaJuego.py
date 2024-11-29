@@ -62,7 +62,7 @@ class VistaJuego:
         self.x = 80
         self.y = 250
         self.puntuacion = 0 
-        self.velocidad = 10
+        self.velocidad = 5
         self.perder = False
 
         #Imagenes
