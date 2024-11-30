@@ -24,6 +24,15 @@ class Usuario():
                 return
             messagebox.showerror("Advertencia", "El nombre de usuario y/o contraseña no existe, verifique e intente nuevamente!")
             miConexion.cerrarConexion()
+
+    def actualizarPuntos(self, nombreUsu, puntos):
+        miConexion = ConexionDB()
+        miConexion.crearConexion()
+        conexion = miConexion.getConection()
+        cursor = conexion.cursor()
+        cursor.execute("UPDATE jugadores SET puntaje = %s WHERE nombre = %s", (puntos, nombreUsu))
+        conexion.commit()
+        miConexion.cerrarConexion()
             
     def crearUsuario(self, nombreUsu, passwordUsu):
         miConexion = ConexionDB()
