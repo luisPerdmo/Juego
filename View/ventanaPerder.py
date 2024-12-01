@@ -1,9 +1,16 @@
 import tkinter as tk
 from tkinter import *
 
+import tkinter as tk
+from View.tablaPuntacion import ConsultarPuntaje
+
 class VentanaPerder:
 
-    def reiniciar(self):
+    def mostrarTabla(self, event):
+        ConsultarPuntaje(self.vistaJuego.jugador)
+
+
+    def reiniciar(self, event):
         self.vistaJuego.reiniciarJuego()
         self.ventanaP.destroy()
 
@@ -29,8 +36,13 @@ class VentanaPerder:
         self.lblPuntos.place(relx=0.5, rely=0.6, anchor="center")
 
         #Botones 
-        self.btnReiniciar = tk.Button(self.ventanaP, image=self.IconoReiniciar, command=self.reiniciar)
+        self.btnReiniciar = tk.Button(self.ventanaP, image=self.IconoReiniciar)
         self.btnReiniciar.place(x=50, y=140)
+        self.btnReiniciar.bind("<Button-1>", self.reiniciar)
+
+        self.btnMostrarTabla = tk.Button(self.ventanaP)
+        self.btnMostrarTabla.place(relx=0.9, rely=0.05, anchor="ne")
+        self.btnMostrarTabla.bind("<Button-1>", self.mostrarTabla)
 
         self.vistaJuego = vistaJuego
 

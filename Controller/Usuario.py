@@ -30,8 +30,13 @@ class Usuario():
         miConexion.crearConexion()
         conexion = miConexion.getConection()
         cursor = conexion.cursor()
-        cursor.execute("UPDATE jugadores SET puntaje = %s WHERE nombre = %s", (puntos, nombreUsu))
-        conexion.commit()
+        cursor.execute("SELECT puntaje FROM jugadores WHERE nombre = ?", (nombreUsu,))
+        resultado = cursor.fetchone()
+
+        if resultado and puntos > resultado[0]:
+            cursor.execute("UPDATE jugadores SET puntaje = ? WHERE nombre = ?", (puntos, nombreUsu))
+            conexion.commit()
+
         miConexion.cerrarConexion()
             
     def crearUsuario(self, nombreUsu, passwordUsu):
@@ -54,4 +59,13 @@ class Usuario():
         resultado = cursor.fetchone()
         miConexion.cerrarConexion
         return resultado is not None
+    
+    def consultarTabla(self):
+        miConexion = ConexionDB()
+        miConexion.crearConexion()
+        con = miConexion.getConection()
+        cursor = con.cursor()
+        cursor.execute("Select * from jugadores")
+        listaUsuario = cursor.fetchall()
+        return listaUsuario
         

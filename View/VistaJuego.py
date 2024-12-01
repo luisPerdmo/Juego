@@ -23,8 +23,8 @@ class VistaJuego:
 
     def teerminarJuego(self):
         self.perder = True
-        self.jugador.actualizarPuntos(self.jugador.nombre, self.puntos)
-        VentanaPerder(self.ventana, self.puntos, self.jugador.nombre, self)
+        self.jugador.actualizarPuntos(self.jugador.nombre, self.puntuacion)
+        VentanaPerder(self.ventana, self.puntuacion, self.jugador.nombre, self)
 
     def reiniciarJuego(self):
         self.x = 80
