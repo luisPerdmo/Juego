@@ -18,9 +18,10 @@ class ConsultarPuntaje():
 
         self.tabla=ttk.Treeview(self.ventana)
         self.tabla["columns"]=["ID","Nombre","Puntaje"]
-        self.tabla.heading("#1",text="ID")
-        self.tabla.heading("#2",text="Nombre")
-        self.tabla.heading("#3",text="Puntaje")
+        self.tabla.heading("#1",text="ID", anchor="center")
+        self.tabla.heading("#2",text="Nombre", anchor="center")
+        self.tabla.heading("#3",text="Puntaje", anchor="center")
+        
 
         self.listaUsuario=usuario.consultarTabla()
 
@@ -30,7 +31,7 @@ class ConsultarPuntaje():
         self.tabla["show"]="headings"
         self.tabla.column("#1",width=50)  
         self.tabla.column("#2",width=100)
-        self.tabla.column("#3",width=300)
+        self.tabla.column("#3",width=100)
 
         self.scorllbar=ttk.Scrollbar(self.ventana,orient="vertical",command=self.tabla.yview)
         self.tabla.config(yscrollcommand=self.scorllbar.set)
