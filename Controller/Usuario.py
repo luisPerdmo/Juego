@@ -22,10 +22,9 @@ class Usuario():
                 self.contrasena = usuario[2]
                 messagebox.showinfo("Informacion", "Acceso Correcto Usuario")
                 mijuego = VistaJuego(loggin, self)
-                miConexion.cerrarConexion()
                 return
-            messagebox.showerror("Advertencia", "El nombre de usuario y/o contraseña no existe, verifique e intente nuevamente!")
-            miConexion.cerrarConexion()
+        messagebox.showerror("Advertencia", "El nombre de usuario y/o contraseña no existe, verifique e intente nuevamente!")
+        miConexion.cerrarConexion()
 
     def actualizarPuntos(self, nombreUsu, puntos):
         miConexion = ConexionDB()
