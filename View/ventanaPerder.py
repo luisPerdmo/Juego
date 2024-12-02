@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import *
-
 import tkinter as tk
+from Tooltip import Tooltip
+
 from View.tablaPuntacion import ConsultarPuntaje
 
 class VentanaPerder:
@@ -39,10 +40,12 @@ class VentanaPerder:
         #Botones 
         self.btnReiniciar = tk.Button(self.ventanaP, image=self.IconoReiniciar)
         self.btnReiniciar.place(x=50, y=140)
+        Tooltip(self.btnReiniciar, "Haz clic para reiniciar el juego.")
         self.btnReiniciar.bind("<Button-1>", self.reiniciar)
         
         self.lblMostrarTabla = tk.Label(self.ventanaP, image=self.IconoClasificacion)
         self.lblMostrarTabla.place(relx=0.9, rely=0.05, anchor="ne")
+        Tooltip(self.lblMostrarTabla, "Haz clic para ver la tabla de clasificación.")
         self.lblMostrarTabla.bind("<Button-1>", self.mostrarTabla)
 
         self.vistaJuego = vistaJuego

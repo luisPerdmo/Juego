@@ -1,10 +1,16 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
+from Tooltip import Tooltip
 
 class CrearUsuario():
 
     def validarCampos(self, event):
+        if len(self.txtNombre.get()) > 25:
+            self.txtNombre.delete(len(self.txtNombre.get()) - 1, END)
+        if len(self.txtContrasena.get()) > 25:
+            self.txtContrasena.delete(len(self.txtContrasena.get()) - 1, END)
+
         nombreValido = len(self.txtNombre.get()) >= 3 and self.txtNombre.get().strip() != ""
         contrasenaValida = len(self.txtContrasena.get()) >= 6 and self.txtContrasena.get().strip() != ""
         if nombreValido and contrasenaValida:
@@ -61,19 +67,23 @@ class CrearUsuario():
         #Campo de Entrada
         self.txtNombre = tk.Entry(self.frame)
         self.txtNombre.place(x=50, y=120)
+        Tooltip(self.txtNombre, "Ingrese su nombre de usuario, mínimo 3 caracteres, máximo 25 caracteres.")
         self.txtNombre.bind("<KeyRelease>", self.validarCampos)
 
         self.txtContrasena = tk.Entry(self.frame)
         self.txtContrasena.place(x=50, y=170)
+        Tooltip(self.txtContrasena, "Ingrese su contraseña, mínimo 6 caracteres, máximo 25 caracteres.")
         self.txtContrasena.bind("<KeyRelease>", self.validarCampos)
 
         #Botones
         self.btnGuardar = tk.Button(self.frame, text="Guardar", state="disabled", bg="#F0F0F0", image=self.IconoAgregar, compound="left")
         self.btnGuardar.place(x=50, y=230, width=190)
+        Tooltip(self.btnGuardar, "Guarde los datos del nuevo usuario.")
         self.btnGuardar.bind("<Button-1>", self.guardarUsuario)
 
         self.btnLimpiar = tk.Button(self.frame, text="Limpiar", bg="#F0F0F0", image=self.IconoLimpiar, compound="left")
         self.btnLimpiar.place(x=50, y=265, width=190)
+        Tooltip(self.btnLimpiar, "Limpiar los campos de texto.")
         self.btnLimpiar.bind("<Button-1>", self.limpiarCampos)
 
         self.ventana.mainloop()

@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
+from Tooltip import Tooltip
+
+
 from Controller.Usuario import Usuario
 from View.crearUsuario import CrearUsuario  
 from View.VistaJuego import VistaJuego
@@ -85,10 +88,12 @@ class Loggin():
         #Campo de entrada
         self.txtUsuario = tk.Entry(self.frame, width=25)
         self.txtUsuario.place(x=80, y=140)
+        Tooltip(self.txtUsuario, "Ingrese su nombre de usuario, solo letras minusculas, n/ min 3 caracteres , max 25 caracteres.")
         self.txtUsuario.bind("<KeyRelease>", self.validarCampos)
 
         self.txtPassword = tk.Entry(self.frame, width=25, show="*")
         self.txtPassword.place(x=80, y=190)
+        Tooltip(self.txtPassword, "Ingrese su contraseña de usuario, solo letras minusculas, n/ min 3 caracteres , max 15 caracteres.")
         self.txtPassword.bind("<KeyRelease>", self.validarCampos)
 
         #Botones
@@ -99,18 +104,22 @@ class Loggin():
 
         self.btnIngresar = tk.Button(self.frame, text="Ingresar", width=8)
         self.btnIngresar.place(x=80, y=240)
+        Tooltip(self.btnIngresar, "Presione para iniciar sesión si ha completado correctamente los campos.")
         self.btnIngresar.bind("<Button-1>", self.ingresar)
 
         self.btnLimpiar = tk.Button(self.frame, text="Limpiar", width=8)
         self.btnLimpiar.place(x=208, y=240)
+        Tooltip(self.btnLimpiar, "Presione para limpiar los campos de texto.")
         self.btnLimpiar.bind("<Button-1>" , self.limpiarCampos)
 
         self.btnCrearCuenta = tk.Button(self.frame, text="Crear Cuenta", width=22)
         self.btnCrearCuenta.place(x=80, y=280)
+        Tooltip(self.btnCrearCuenta, "Presione para abrir la ventana de creación de cuenta.")
         self.btnCrearCuenta.bind("<Button-1>" , self.abrirVentanaCrearUsuario)
 
         self.lblAyuda = tk.Label(self.frame, width=25, height=25, image=self.IconoAyuda)
         self.lblAyuda.place(x=350, y=10) 
+        Tooltip(self.lblAyuda, "Presione para obtener información sobre cómo usar la aplicación.")
         self.lblAyuda.bind("<Button-1>", self.mostrarAyuda)
 
         self.ventana.mainloop()
