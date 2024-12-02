@@ -4,7 +4,7 @@ class ConexionDB():
     def __init__(self):
         self.__host = "localhost"
         self.__user = "root"
-        self.__password = ""
+        self.__password = "P31181030"
         self.__port = 3306
         self.__database = "juego"
         self.__conection = None

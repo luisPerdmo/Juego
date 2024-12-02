@@ -33,7 +33,7 @@ class VistaJuego:
     def reiniciarJuego(self):
         self.x = 80
         self.y = 250
-        self.puntos = 0
+        self.puntuacion=0
         self.perder = False
         self.canvas.coords(self.condorP, self.x, self.y)
         self.canvas.coords(self.tubosA, 1200, -550)
@@ -85,6 +85,7 @@ class VistaJuego:
         self.imagenTuboA = tk.PhotoImage(file=r"Juego/Src/tubo2.png")
         self.imagenCondorV = tk.PhotoImage(file=r"Juego/Src/condorVolando.png")
         self.imagenCondorP = tk.PhotoImage(file=r"Juego/Src/condorPlaniando.png")
+
         
         # Texto
         self.lblJugador = tk.Label(self.ventana, text=f"Jugador: {jugador.nombre}")
@@ -93,6 +94,7 @@ class VistaJuego:
         # Canvas
         self.canvas = tk.Canvas(self.ventana, width=1000, height=730, bg="#63BFFF")
         self.canvas.place(relx=0.5, rely=0.5, anchor="center")  
+
 
         self.condorP = self.canvas.create_image(self.x, self.y, anchor="nw", image=self.imagenCondorP)
         self.puntos = self.canvas.create_text(75, 30, text="0", font=("Impact", 40))

@@ -25,7 +25,7 @@ class VentanaPerder:
         #iconos
         self.IconoReiniciar = tk.PhotoImage(file=r"Juego/Src/Reiniciar.png")
         self.IconoClasificacion=tk.PhotoImage(file=r"Juego/Src/Clasificacion.png")
-
+                 
         #texto
         self.lblPerder = tk.Label(self.ventanaP, text="¡Has perdido!", font=("Impact", 20))
         self.lblPerder.place(relx=0.5, rely=0.3, anchor="center")
