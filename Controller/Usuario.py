@@ -7,6 +7,8 @@ class Usuario():
         self.__nombre = None
         self.__contrasena = None
 
+
+
     def iniciarSesion(self, nombreUsuario, password, loggin):
         miConexion = ConexionDB()
         miConexion.crearConexion()
@@ -46,7 +48,7 @@ class Usuario():
         cursor = conexion.cursor()
         cursor.execute("INSERT INTO jugadores (nombre, contrasena) VALUES (?, ?)", (nombreUsu, passwordUsu))
         conexion.commit()
-        miConexion.cerrarConexion
+        miConexion.cerrarConexion()
 
 
     def existeUsuario(self, nombreUsu):
@@ -57,7 +59,7 @@ class Usuario():
         cursor.execute("SELECT * FROM jugadores WHERE nombre = ?", (nombreUsu,))
         conexion.commit()
         resultado = cursor.fetchone()
-        miConexion.cerrarConexion
+        miConexion.cerrarConexion()
         return resultado is not None
     
     def consultarTabla(self):

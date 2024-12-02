@@ -23,6 +23,7 @@ class VentanaPerder:
 
         #iconos
         self.IconoReiniciar = tk.PhotoImage(file=r"Juego/Src/Reiniciar.png")
+        self.IconoClasificacion=tk.PhotoImage(file=r"Juego/Src/Clasificacion.png")
 
         #texto
         self.lblPerder = tk.Label(self.ventanaP, text="¡Has perdido!", font=("Impact", 20))
@@ -39,10 +40,10 @@ class VentanaPerder:
         self.btnReiniciar = tk.Button(self.ventanaP, image=self.IconoReiniciar)
         self.btnReiniciar.place(x=50, y=140)
         self.btnReiniciar.bind("<Button-1>", self.reiniciar)
-
-        self.btnMostrarTabla = tk.Button(self.ventanaP)
-        self.btnMostrarTabla.place(relx=0.9, rely=0.05, anchor="ne")
-        self.btnMostrarTabla.bind("<Button-1>", self.mostrarTabla)
+        
+        self.lblMostrarTabla = tk.Label(self.ventanaP, image=self.IconoClasificacion)
+        self.lblMostrarTabla.place(relx=0.9, rely=0.05, anchor="ne")
+        self.lblMostrarTabla.bind("<Button-1>", self.mostrarTabla)
 
         self.vistaJuego = vistaJuego
 

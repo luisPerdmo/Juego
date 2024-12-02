@@ -8,9 +8,9 @@ class CrearUsuario():
         nombreValido = len(self.txtNombre.get()) >= 3 and self.txtNombre.get().strip() != ""
         contrasenaValida = len(self.txtContrasena.get()) >= 6 and self.txtContrasena.get().strip() != ""
         if nombreValido and contrasenaValida:
-            self.btnGuardar.config(state=tk.NORMAL)
+            self.btnGuardar.config(state="normal")
         else:
-            self.btnGuardar.config(state=tk.DISABLED)
+            self.btnGuardar.config(state="disabled")
 
     def guardarUsuario(self, event):
         nombre = self.txtNombre.get().strip()  
@@ -18,17 +18,17 @@ class CrearUsuario():
         if not nombre or not contrasena:  
             messagebox.showerror("Error", "Por favor, ingrese un nombre y una contraseña válidos.")
             return
-        if self.Usuario.existeUsuario(nombre):  # Verificamos si el usuario ya existe
+        if self.Usuario.existeUsuario(nombre): 
             messagebox.showerror("Error", "El nombre de usuario ya existe. Por favor, elige otro.")
             return
         self.Usuario.crearUsuario(nombre, contrasena)
         messagebox.showinfo("Confirmación", "¡Nuevo usuario registrado con éxito!")
-        self.limpiarCampos()
+        self.limpiarCampos(event)
 
-    def limpiarCampos(self):
+    def limpiarCampos(self, event):
         self.txtNombre.delete(0, END)
         self.txtContrasena.delete(0, END)
-        self.btnGuardar.config(state=tk.DISABLED)
+        self.btnGuardar.config(state="disabled")
 
     def __init__(self, Usuario):
         self.ventana = tk.Toplevel()
@@ -38,6 +38,11 @@ class CrearUsuario():
         self.ventana.resizable(0, 0)
 
         self.Usuario = Usuario
+
+
+        #iconos 
+        self.IconoAgregar=tk.PhotoImage(file=r"Juego/Src/user_add.png")
+        self.IconoLimpiar=tk.PhotoImage(file=r"Juego/Src/textfield_delete.png")
 
         #Frame que agrupa el contenido
         self.frame = tk.Frame(self.ventana, width=300, height=325, bg="#F0F0F0")
@@ -63,11 +68,11 @@ class CrearUsuario():
         self.txtContrasena.bind("<KeyRelease>", self.validarCampos)
 
         #Botones
-        self.btnGuardar = tk.Button(self.frame, text="Guardar", state=tk.DISABLED, bg="#F0F0F0")
+        self.btnGuardar = tk.Button(self.frame, text="Guardar", state="disabled", bg="#F0F0F0", image=self.IconoAgregar, compound="left")
         self.btnGuardar.place(x=50, y=230, width=190)
         self.btnGuardar.bind("<Button-1>", self.guardarUsuario)
 
-        self.btnLimpiar = tk.Button(self.frame, text="Limpiar", bg="#F0F0F0")
+        self.btnLimpiar = tk.Button(self.frame, text="Limpiar", bg="#F0F0F0", image=self.IconoLimpiar, compound="left")
         self.btnLimpiar.place(x=50, y=265, width=190)
         self.btnLimpiar.bind("<Button-1>", self.limpiarCampos)
 

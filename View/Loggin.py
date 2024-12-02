@@ -44,6 +44,9 @@ class Loggin():
     def vistaJuego(self, event):
         juego = VistaJuego(self.ventana, self.miUsuario)
 
+    def mostrarAyuda(self, event):
+        messagebox.showinfo("Ayuda", "Introduce tu usuario y contraseña. Si no tienes cuenta, crea una nueva.")
+
     def __init__(self):
         self.ventana = tk.Tk()
         self.ventana.resizable(0, 0)
@@ -60,6 +63,7 @@ class Loggin():
         self.IconoOcul = tk.PhotoImage(file=r"Juego/Src/Ocultar.png")
         self.IconoVer = tk.PhotoImage(file=r"Juego/Src/Ver.png")
         self.IconoLoggin = tk.PhotoImage(file=r"Juego/Src/imagenLoggin-2.png")
+        self.IconoAyuda = tk.PhotoImage(file=r"Juego/Src/Ayuda2.png (1).png")
 
         #Frame que agrupa el contenido
         self.frame = tk.Frame(self.ventana, width=390, height=350, bg="#F0F0F0")
@@ -104,5 +108,9 @@ class Loggin():
         self.btnCrearCuenta = tk.Button(self.frame, text="Crear Cuenta", width=22)
         self.btnCrearCuenta.place(x=80, y=280)
         self.btnCrearCuenta.bind("<Button-1>" , self.abrirVentanaCrearUsuario)
+
+        self.lblAyuda = tk.Label(self.frame, width=25, height=25, image=self.IconoAyuda)
+        self.lblAyuda.place(x=350, y=10) 
+        self.lblAyuda.bind("<Button-1>", self.mostrarAyuda)
 
         self.ventana.mainloop()
