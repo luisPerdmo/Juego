@@ -1,11 +1,38 @@
 import tkinter as tk
 from tkinter import *
 import random
+import threading
+import sounddevice as sd
+import soundfile as sf
+
 from Tooltip import Tooltip
 
 from View.ventanaPerder import VentanaPerder
 
 class VistaJuego:
+
+    def alternarMusica(self, event):
+        if self.musica_activa:
+            self.detenerMusica()
+        else:
+            self.iniciarHiloMusica()
+
+    def reproducirMusica(self):
+            self.musica_activa = True
+            data, samplerate = sf.read(r"Juego/sonidos/lost-woods-the-legend-of-zelda-ocarina-of-time.mp3")
+            volumen = 0.1
+            data = data * volumen
+            while self.musica_activa:
+                sd.play(data, samplerate)
+                sd.wait()
+
+    def iniciarHiloMusica(self):
+        self.musica_thread = threading.Thread(target=self.reproducirMusica, daemon=True)
+        self.musica_thread.start()
+
+    def detenerMusica(self):
+        self.musica_activa = False
+        sd.stop()
 
     def moverCon(self, event):
         if not self.perder:
@@ -26,6 +53,7 @@ class VistaJuego:
             self.ventana.after(50, self.moverCondor)
 
     def teerminarJuego(self):
+        self.detenerMusica() 
         self.perder = True
         self.jugador.actualizarPuntos(self.jugador.nombre, self.puntuacion)
         VentanaPerder(self.ventana, self.puntuacion, self.jugador.nombre, self)
@@ -41,6 +69,8 @@ class VistaJuego:
         self.canvas.itemconfigure(self.puntos, text="0")
         self.moverCondor()
         self.moverTubo()
+        self.iniciarHiloMusica()
+
 
     def moverTubo(self):
         if self.perder:  # Verifica si el juego terminó
@@ -65,9 +95,10 @@ class VistaJuego:
             self.ventana.after(50, self.moverTubo)
 
     def destroy(self, event):
+        self.detenerMusica()
         self.ventana.destroy()
 
-    def __init__(self, loggin, jugador):  
+    def __init__(self, loggin, jugador):
         self.ventana = tk.Toplevel(loggin)  
         self.ventana.title("Juego Principal")
         self.ventana.config(width=1020, height=785)
@@ -79,6 +110,11 @@ class VistaJuego:
         self.puntuacion = 0 
         self.velocidad = 5
         self.perder = False
+        self.musica_activa = False
+        self.musica_thread = None
+
+        # Iniciar música en un hilo
+        self.iniciarHiloMusica()
 
         # Imágenes
         self.imagenTubob = tk.PhotoImage(file=r"Juego/Src/tubo.png")
@@ -109,6 +145,7 @@ class VistaJuego:
 
         # Eventos
         self.ventana.bind("<space>", self.moverCon)
+        self.ventana.bind("<m>", self.alternarMusica)
         
         # After
         self.ventana.after(50, self.moverCondor)
