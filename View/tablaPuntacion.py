@@ -10,7 +10,6 @@ class ConsultarPuntaje():
         self.ventana.config(width=600,height=100)
         self.ventana.title("Tabla de Jugadores")
 
-
         self.usuario=usuario
 
         self.lbltitulo=tk.Label(self.ventana,text="Clasificacion")

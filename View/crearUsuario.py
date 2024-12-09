@@ -4,6 +4,15 @@ from tkinter import messagebox
 from Tooltip import Tooltip
 
 class CrearUsuario():
+     
+    def mostrarAyuda(self, event):
+        texto_ayuda = (
+        "Atajos Del Juego:\n"
+        "- Presione 'g' para guardar el usuario.\n"
+        "- Presiona 'l' para limpiar los campos.\n"
+        "- presione 'F1' para mostrar este ayuda. \n" 
+        )
+        messagebox.showinfo("Ayuda", texto_ayuda)
 
     def validarCampos(self, event):
         if len(self.txtNombre.get()) > 25:
@@ -42,13 +51,14 @@ class CrearUsuario():
         self.ventana.config(bg="#FFFFFF")
         self.ventana.config(width=360, height=385)
         self.ventana.resizable(0, 0)
+        self.ventana.focus_set()
 
         self.Usuario = Usuario
 
-
         #iconos 
-        self.IconoAgregar=tk.PhotoImage(file=r"Juego/Src/user_add.png")
-        self.IconoLimpiar=tk.PhotoImage(file=r"Juego/Src/textfield_delete.png")
+        self.IconoAgregar = tk.PhotoImage(file=r"Juego/Src/user_add.png")
+        self.IconoLimpiar = tk.PhotoImage(file=r"Juego/Src/textfield_delete.png")
+        self.iconoAyuda = tk.PhotoImage(file=r"Juego\Src\Ayuda2.png (1).png")
 
         #Frame que agrupa el contenido
         self.frame = tk.Frame(self.ventana, width=300, height=325, bg="#F0F0F0")
@@ -85,5 +95,15 @@ class CrearUsuario():
         self.btnLimpiar.place(x=50, y=265, width=190)
         Tooltip(self.btnLimpiar, "Limpiar los campos de texto.")
         self.btnLimpiar.bind("<Button-1>", self.limpiarCampos)
+
+        self.lblAyuda = tk.Label(self.frame, image=self.iconoAyuda)
+        self.lblAyuda.place(relx=1, y=10, anchor="ne")
+        Tooltip(self.lblAyuda, "Muestra ayuda sobre cómo usar esta ventana.")
+        self.lblAyuda.bind("<Button-1>", self.mostrarAyuda)
+
+        # Atajos
+        self.ventana.bind("<g>", self.guardarUsuario)
+        self.ventana.bind("<l>", self.limpiarCampos)
+        self.ventana.bind("<F1>", self.mostrarAyuda)
 
         self.ventana.mainloop()

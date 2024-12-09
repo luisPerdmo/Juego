@@ -5,11 +5,23 @@ import threading
 import sounddevice as sd
 import soundfile as sf
 
+from tkinter import messagebox
+
 from Tooltip import Tooltip
 
 from View.ventanaPerder import VentanaPerder
 
 class VistaJuego:
+
+    def mostrarAyuda(self, event):
+        texto_ayuda = (
+        "Atajos Del Juego:\n"
+        "- Presione 'space' para mover el cóndor hacia arriba.\n"
+        "- Presiona 'M' para activar o desactivar la música.\n"
+        "- Presione 'Escape' para cerrar la ventana.\n"
+        "- presione 'F1' para mostrar este ayuda. \n" 
+        )
+        messagebox.showinfo("Ayuda", texto_ayuda)
 
     def alternarMusica(self, event):
         if self.musica_activa:
@@ -103,6 +115,7 @@ class VistaJuego:
         self.ventana.title("Juego Principal")
         self.ventana.config(width=1020, height=785)
         self.ventana.resizable(0, 0)
+        self.ventana.focus_set()
 
         self.jugador = jugador
         self.x = 80
@@ -121,7 +134,7 @@ class VistaJuego:
         self.imagenTuboA = tk.PhotoImage(file=r"Juego/Src/tubo2.png")
         self.imagenCondorV = tk.PhotoImage(file=r"Juego/Src/condorVolando.png")
         self.imagenCondorP = tk.PhotoImage(file=r"Juego/Src/condorPlaniando.png")
-
+        self.iconoAyuda = tk.PhotoImage(file=r"Juego\Src\Ayuda2.png (1).png")
         
         # Texto
         self.lblJugador = tk.Label(self.ventana, text=f"Jugador: {jugador.nombre}")
@@ -142,10 +155,17 @@ class VistaJuego:
         self.btnCerrar.place(x=940, y=760)  
         Tooltip(self.btnCerrar, "Presione para salir del juego.")
         self.btnCerrar.bind("<Button-1>", self.destroy)
-
-        # Eventos
+        
+        self.btnAyuda = tk.Label(self.ventana, image=self.iconoAyuda)
+        self.btnAyuda.place(x=30, y=760)
+        Tooltip(self.btnAyuda, "Presione para ver las atajos del juego.")
+        self.btnAyuda.bind("<Button-1>", self.mostrarAyuda)
+        
+        # Atajos
         self.ventana.bind("<space>", self.moverCon)
         self.ventana.bind("<m>", self.alternarMusica)
+        self.ventana.bind("<F1>", self.mostrarAyuda)
+        self.ventana.bind("<Escape>", self.destroy)
         
         # After
         self.ventana.after(50, self.moverCondor)

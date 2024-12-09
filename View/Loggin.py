@@ -48,7 +48,13 @@ class Loggin():
         juego = VistaJuego(self.ventana, self.miUsuario)
 
     def mostrarAyuda(self, event):
-        messagebox.showinfo("Ayuda", "Introduce tu usuario y contraseña. Si no tienes cuenta, crea una nueva.")
+        messagebox.showinfo("Ayuda", "Introduce tu usuario y contraseña. Si no tienes cuenta, crea una nueva.\n"
+                            "Atajos Del Juego.\n"
+                            "- Presione 'i' para ingresar.\n"
+                            "- Presione 'l' para limpiar los campos.\n"
+                            "- Presionee 'v' para crear usuario.\n"
+                            "- Presione 'F1' para mostrar el ayuda.\n"
+                            )
 
     def __init__(self):
         self.ventana = tk.Tk()
@@ -121,5 +127,11 @@ class Loggin():
         self.lblAyuda.place(x=350, y=10) 
         Tooltip(self.lblAyuda, "Presione para obtener información sobre cómo usar la aplicación.")
         self.lblAyuda.bind("<Button-1>", self.mostrarAyuda)
+
+        # Atajos
+        self.ventana.bind("<i>", self.ingresar)
+        self.ventana.bind("<l>", self.limpiarCampos)
+        self.ventana.bind("<v>", self.abrirVentanaCrearUsuario)
+        self.ventana.bind("<F1>", self.mostrarAyuda)
 
         self.ventana.mainloop()
