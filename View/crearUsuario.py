@@ -8,8 +8,8 @@ class CrearUsuario():
     def mostrarAyuda(self, event):
         texto_ayuda = (
         "Atajos Del Juego:\n"
-        "- Presione 'g' para guardar el usuario.\n"
-        "- Presiona 'l' para limpiar los campos.\n"
+        "- Presione 'space para guardar el usuario.\n"
+        "- Presiona 'F2' para limpiar los campos.\n"
         "- presione 'F1' para mostrar este ayuda. \n" 
         )
         messagebox.showinfo("Ayuda", texto_ayuda)
@@ -102,8 +102,8 @@ class CrearUsuario():
         self.lblAyuda.bind("<Button-1>", self.mostrarAyuda)
 
         # Atajos
-        self.ventana.bind("<g>", self.guardarUsuario)
-        self.ventana.bind("<l>", self.limpiarCampos)
+        self.ventana.bind("<space>", self.guardarUsuario)
+        self.ventana.bind("<F2>", self.limpiarCampos)
         self.ventana.bind("<F1>", self.mostrarAyuda)
 
         self.ventana.mainloop()

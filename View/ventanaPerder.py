@@ -12,8 +12,8 @@ class VentanaPerder:
     def mostrarAyuda(self, event):
         texto_ayuda = (
         "Atajos Del Juego:\n"
-        "- Presione 'r' para reiniciar.\n"
-        "- Presiona 't' para mostar la tabla de puntaje.\n"
+        "- Presione 'Escape' para reiniciar.\n"
+        "- Presiona 'space' para mostar la tabla de puntaje.\n"
         "- Presione 'F1' para mostrar este ayuda.\n" 
         )
         messagebox.showinfo("Ayuda", texto_ayuda)
@@ -69,8 +69,8 @@ class VentanaPerder:
         self.vistaJuego = vistaJuego
 
         # Atajos
-        self.ventanaP.bind("<r>", self.reiniciar)
-        self.ventanaP.bind("<t>", self.mostrarTabla)
+        self.ventanaP.bind("<Escape>", self.reiniciar)
+        self.ventanaP.bind("<space>", self.mostrarTabla)
         self.ventanaP.bind("<F1>", self.mostrarAyuda)
 
         self.ventanaP.mainloop()
