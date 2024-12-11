@@ -48,14 +48,14 @@ class Loggin():
         juego = VistaJuego(self.ventana, self.miUsuario)
 
     def mostrarAyuda(self, event):
-        messagebox.showinfo
-        ("Ayuda", "Introduce tu usuario y contraseña. Si no tienes cuenta, crea una nueva.\n"
+        texto_ayuda = (
         "Atajos Del Juego.\n"
         "- Presione 'f3' para ingresar.\n"
         "- Presione 'F2' para limpiar los campos.\n"
         "- Presione 'F4' para crear usuario.\n"
         "- Presione 'F1' para mostrar el ayuda.\n"
         )
+        messagebox.showinfo("Ayuda", texto_ayuda)
 
     def __init__(self):
         self.ventana = tk.Tk()
